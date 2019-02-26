@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types = 1);
+
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View view component instance */
