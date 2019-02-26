@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
             if (count($jobs) > 0) {
                 foreach ($jobs as $index => $job) {
-                    echo HTML::encode($job);
+                    echo HTML::encode($job['name']);
                     ?><br/>
                     <?php
                 }
