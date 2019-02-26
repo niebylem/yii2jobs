@@ -12,12 +12,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?php
-            if (count($jobs) > 0) {
+            if ($jobs !== null && count($jobs) > 0) {
                 foreach ($jobs as $index => $job) {
-                    echo HTML::encode($job['name']);
+                    /**
+                     * @var $job \app\modules\jobs\models\Job
+                     */
+                    echo HTML::encode($job->title) .'</br>';
+                    echo 'dodano: ' . HTML::encode($job->getDateStart()) .'</br>';
+                    echo $job->getContent() .'</br>';
                     ?><br/>
                     <?php
                 }
+            } else {
+                echo 'Ogłoszenia aktualnie niedostępne';
             }
         ?>
     </p>

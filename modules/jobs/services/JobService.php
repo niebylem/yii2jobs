@@ -2,22 +2,45 @@
 
 namespace app\modules\jobs\services;
 
+use app\modules\jobs\models\Job;
 use app\modules\jobs\services\interfaces\JobProviderInterface;
 use app\services\RestService;
 
 class JobService implements JobProviderInterface
 {
+    const GET_JOBS = '/ads';
+    private $MBEApiUrl;
     private $restService;
 
     public function __construct()
     {
         $this->restService = new RestService();
+        $this->MBEApiUrl = \Yii::$app->params['MBEApiUrl'];
     }
 
     public function getJobs(): ?array
     {
-        $responseBody = $this->restService->get('getJobs');
-        $decoded = json_decode($responseBody, true);
-        return $decoded['jobs'];
+        $url = $this->MBEApiUrl . static::GET_JOBS;
+        $responseBody = $this->restService->get($url);
+        if ($responseBody !== null) {
+            $decoded = json_decode($responseBody, true);
+
+            if ($decoded['success'] === true) {
+                $jobs = $this->processResponseToArrayOfJobs($decoded['data']);
+                return $jobs;
+            }
+        }
+
+        return null;
+    }
+
+    protected function processResponseToArrayOfJobs(array $data): ?array
+    {
+        $jobs = [];
+        foreach ($data as $index => $datum) {
+            $jobs[] = Job::createFromArray($datum);
+        }
+
+        return $jobs;
     }
 }
