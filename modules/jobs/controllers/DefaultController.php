@@ -2,7 +2,7 @@
 
 namespace app\modules\jobs\controllers;
 
-use app\modules\jobs\services\JobService;
+use app\modules\jobs\services\interfaces\JobProviderInterface;
 use yii\base\Module;
 use yii\web\Controller;
 
@@ -10,9 +10,9 @@ class DefaultController extends Controller
 {
     private $jobService;
 
-    public function __construct(string $id, Module $module, array $config = [])
+    public function __construct(string $id, Module $module, array $config = [], JobProviderInterface $jobService)
     {
-        $this->jobService = new JobService();
+        $this->jobService = $jobService;
         parent::__construct($id, $module, $config);
     }
 

@@ -4,7 +4,7 @@ namespace app\modules\jobs\services;
 
 use app\modules\jobs\models\Job;
 use app\modules\jobs\services\interfaces\JobProviderInterface;
-use app\services\RestService;
+use app\services\interfaces\RestInterface;
 
 class JobService implements JobProviderInterface
 {
@@ -12,9 +12,9 @@ class JobService implements JobProviderInterface
     private $MBEApiUrl;
     private $restService;
 
-    public function __construct()
+    public function __construct(RestInterface $restClient)
     {
-        $this->restService = new RestService();
+        $this->restService = $restClient;
         $this->MBEApiUrl = \Yii::$app->params['MBEApiUrl'];
     }
 

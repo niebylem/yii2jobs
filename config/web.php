@@ -2,10 +2,15 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$bootstrap = require __DIR__ . '/bootstrap.php';
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'container' => [
+        'definitions' => $bootstrap,
+        'singletons' => []
+    ],
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
