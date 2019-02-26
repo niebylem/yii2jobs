@@ -45,8 +45,8 @@
             "yii\\composer\\Installer::postCreateProject",
             "yii\\composer\\Installer::postInstall"
         ],
-      "check-style": "phpcs -p --standard=ruleset.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 controllers mail models views tests",
-      "fix-style": "phpcbf -p --standard=ruleset.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 controllers mail models views tests"
+      "check-style": "phpcs -p --standard=ruleset.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 controllers mail models views tests modules services",
+      "fix-style": "phpcbf -p --standard=ruleset.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 controllers mail models views tests modules services"
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
